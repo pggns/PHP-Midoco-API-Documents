@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DeleteDbiUpdateResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DeleteDbiUpdateResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class DeleteDbiUpdateResponse extends AbstractStructBase
      * - ref: MidocoDbiUpdate
      * @var \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO[]
      */
-    protected array $MidocoDbiUpdate = [];
+    protected ?array $MidocoDbiUpdate = null;
     /**
      * Constructor method for DeleteDbiUpdateResponse
      * @uses DeleteDbiUpdateResponse::setMidocoDbiUpdate()
      * @param \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO[] $midocoDbiUpdate
      */
-    public function __construct(array $midocoDbiUpdate = [])
+    public function __construct(?array $midocoDbiUpdate = null)
     {
         $this
             ->setMidocoDbiUpdate($midocoDbiUpdate);
@@ -36,18 +37,22 @@ class DeleteDbiUpdateResponse extends AbstractStructBase
      * Get MidocoDbiUpdate value
      * @return \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO[]
      */
-    public function getMidocoDbiUpdate(): array
+    public function getMidocoDbiUpdate(): ?array
     {
         return $this->MidocoDbiUpdate;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDbiUpdate method
+     * This method is responsible for validating the value(s) passed to the setMidocoDbiUpdate method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDbiUpdate method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDbiUpdateForArrayConstraintsFromSetMidocoDbiUpdate(array $values = []): string
+    public static function validateMidocoDbiUpdateForArrayConstraintFromSetMidocoDbiUpdate(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $deleteDbiUpdateResponseMidocoDbiUpdateItem) {
@@ -69,10 +74,10 @@ class DeleteDbiUpdateResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO[] $midocoDbiUpdate
      * @return \Pggns\MidocoApi\Documents\StructType\DeleteDbiUpdateResponse
      */
-    public function setMidocoDbiUpdate(array $midocoDbiUpdate = []): self
+    public function setMidocoDbiUpdate(?array $midocoDbiUpdate = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDbiUpdateArrayErrorMessage = self::validateMidocoDbiUpdateForArrayConstraintsFromSetMidocoDbiUpdate($midocoDbiUpdate))) {
+        if ('' !== ($midocoDbiUpdateArrayErrorMessage = self::validateMidocoDbiUpdateForArrayConstraintFromSetMidocoDbiUpdate($midocoDbiUpdate))) {
             throw new InvalidArgumentException($midocoDbiUpdateArrayErrorMessage, __LINE__);
         }
         $this->MidocoDbiUpdate = $midocoDbiUpdate;

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetPrintJobs4PrintQueueResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetPrintJobs4PrintQueueResponse extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class GetPrintJobs4PrintQueueResponse extends AbstractStructBase
      * - ref: MidocoTempPrintjobInfo
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoTempPrintjobInfo[]
      */
-    protected array $MidocoTempPrintjobInfo = [];
+    protected ?array $MidocoTempPrintjobInfo = null;
     /**
      * The locked
      * @var bool|null
@@ -41,7 +42,7 @@ class GetPrintJobs4PrintQueueResponse extends AbstractStructBase
      * @param bool $locked
      * @param int $lockedUserId
      */
-    public function __construct(array $midocoTempPrintjobInfo = [], ?bool $locked = null, ?int $lockedUserId = null)
+    public function __construct(?array $midocoTempPrintjobInfo = null, ?bool $locked = null, ?int $lockedUserId = null)
     {
         $this
             ->setMidocoTempPrintjobInfo($midocoTempPrintjobInfo)
@@ -52,18 +53,22 @@ class GetPrintJobs4PrintQueueResponse extends AbstractStructBase
      * Get MidocoTempPrintjobInfo value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoTempPrintjobInfo[]
      */
-    public function getMidocoTempPrintjobInfo(): array
+    public function getMidocoTempPrintjobInfo(): ?array
     {
         return $this->MidocoTempPrintjobInfo;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoTempPrintjobInfo method
+     * This method is responsible for validating the value(s) passed to the setMidocoTempPrintjobInfo method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoTempPrintjobInfo method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoTempPrintjobInfoForArrayConstraintsFromSetMidocoTempPrintjobInfo(array $values = []): string
+    public static function validateMidocoTempPrintjobInfoForArrayConstraintFromSetMidocoTempPrintjobInfo(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getPrintJobs4PrintQueueResponseMidocoTempPrintjobInfoItem) {
@@ -85,10 +90,10 @@ class GetPrintJobs4PrintQueueResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoTempPrintjobInfo[] $midocoTempPrintjobInfo
      * @return \Pggns\MidocoApi\Documents\StructType\GetPrintJobs4PrintQueueResponse
      */
-    public function setMidocoTempPrintjobInfo(array $midocoTempPrintjobInfo = []): self
+    public function setMidocoTempPrintjobInfo(?array $midocoTempPrintjobInfo = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoTempPrintjobInfoArrayErrorMessage = self::validateMidocoTempPrintjobInfoForArrayConstraintsFromSetMidocoTempPrintjobInfo($midocoTempPrintjobInfo))) {
+        if ('' !== ($midocoTempPrintjobInfoArrayErrorMessage = self::validateMidocoTempPrintjobInfoForArrayConstraintFromSetMidocoTempPrintjobInfo($midocoTempPrintjobInfo))) {
             throw new InvalidArgumentException($midocoTempPrintjobInfoArrayErrorMessage, __LINE__);
         }
         $this->MidocoTempPrintjobInfo = $midocoTempPrintjobInfo;

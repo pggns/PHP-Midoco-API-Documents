@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for RecompileRulesetsRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class RecompileRulesetsRequest extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class RecompileRulesetsRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var int[]
      */
-    protected array $SystemRuleset2CompileIds = [];
+    protected ?array $SystemRuleset2CompileIds = null;
     /**
      * Constructor method for RecompileRulesetsRequest
      * @uses RecompileRulesetsRequest::setSystemRuleset2CompileIds()
      * @param int[] $systemRuleset2CompileIds
      */
-    public function __construct(array $systemRuleset2CompileIds = [])
+    public function __construct(?array $systemRuleset2CompileIds = null)
     {
         $this
             ->setSystemRuleset2CompileIds($systemRuleset2CompileIds);
@@ -35,18 +36,22 @@ class RecompileRulesetsRequest extends AbstractStructBase
      * Get SystemRuleset2CompileIds value
      * @return int[]
      */
-    public function getSystemRuleset2CompileIds(): array
+    public function getSystemRuleset2CompileIds(): ?array
     {
         return $this->SystemRuleset2CompileIds;
     }
     /**
-     * This method is responsible for validating the values passed to the setSystemRuleset2CompileIds method
+     * This method is responsible for validating the value(s) passed to the setSystemRuleset2CompileIds method
      * This method is willingly generated in order to preserve the one-line inline validation within the setSystemRuleset2CompileIds method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateSystemRuleset2CompileIdsForArrayConstraintsFromSetSystemRuleset2CompileIds(array $values = []): string
+    public static function validateSystemRuleset2CompileIdsForArrayConstraintFromSetSystemRuleset2CompileIds(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $recompileRulesetsRequestSystemRuleset2CompileIdsItem) {
@@ -68,10 +73,10 @@ class RecompileRulesetsRequest extends AbstractStructBase
      * @param int[] $systemRuleset2CompileIds
      * @return \Pggns\MidocoApi\Documents\StructType\RecompileRulesetsRequest
      */
-    public function setSystemRuleset2CompileIds(array $systemRuleset2CompileIds = []): self
+    public function setSystemRuleset2CompileIds(?array $systemRuleset2CompileIds = null): self
     {
         // validation for constraint: array
-        if ('' !== ($systemRuleset2CompileIdsArrayErrorMessage = self::validateSystemRuleset2CompileIdsForArrayConstraintsFromSetSystemRuleset2CompileIds($systemRuleset2CompileIds))) {
+        if ('' !== ($systemRuleset2CompileIdsArrayErrorMessage = self::validateSystemRuleset2CompileIdsForArrayConstraintFromSetSystemRuleset2CompileIds($systemRuleset2CompileIds))) {
             throw new InvalidArgumentException($systemRuleset2CompileIdsArrayErrorMessage, __LINE__);
         }
         $this->SystemRuleset2CompileIds = $systemRuleset2CompileIds;

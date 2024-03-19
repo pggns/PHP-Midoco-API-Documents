@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetUnitModulesForOrgunitResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetUnitModulesForOrgunitResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetUnitModulesForOrgunitResponse extends AbstractStructBase
      * - ref: MidocoUnitModule
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoUnitModule[]
      */
-    protected array $MidocoUnitModule = [];
+    protected ?array $MidocoUnitModule = null;
     /**
      * Constructor method for GetUnitModulesForOrgunitResponse
      * @uses GetUnitModulesForOrgunitResponse::setMidocoUnitModule()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoUnitModule[] $midocoUnitModule
      */
-    public function __construct(array $midocoUnitModule = [])
+    public function __construct(?array $midocoUnitModule = null)
     {
         $this
             ->setMidocoUnitModule($midocoUnitModule);
@@ -36,18 +37,22 @@ class GetUnitModulesForOrgunitResponse extends AbstractStructBase
      * Get MidocoUnitModule value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoUnitModule[]
      */
-    public function getMidocoUnitModule(): array
+    public function getMidocoUnitModule(): ?array
     {
         return $this->MidocoUnitModule;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoUnitModule method
+     * This method is responsible for validating the value(s) passed to the setMidocoUnitModule method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoUnitModule method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoUnitModuleForArrayConstraintsFromSetMidocoUnitModule(array $values = []): string
+    public static function validateMidocoUnitModuleForArrayConstraintFromSetMidocoUnitModule(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getUnitModulesForOrgunitResponseMidocoUnitModuleItem) {
@@ -69,10 +74,10 @@ class GetUnitModulesForOrgunitResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoUnitModule[] $midocoUnitModule
      * @return \Pggns\MidocoApi\Documents\StructType\GetUnitModulesForOrgunitResponse
      */
-    public function setMidocoUnitModule(array $midocoUnitModule = []): self
+    public function setMidocoUnitModule(?array $midocoUnitModule = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoUnitModuleArrayErrorMessage = self::validateMidocoUnitModuleForArrayConstraintsFromSetMidocoUnitModule($midocoUnitModule))) {
+        if ('' !== ($midocoUnitModuleArrayErrorMessage = self::validateMidocoUnitModuleForArrayConstraintFromSetMidocoUnitModule($midocoUnitModule))) {
             throw new InvalidArgumentException($midocoUnitModuleArrayErrorMessage, __LINE__);
         }
         $this->MidocoUnitModule = $midocoUnitModule;

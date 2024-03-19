@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for IncrementDbSequenceResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class IncrementDbSequenceResponse extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class IncrementDbSequenceResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var int[]
      */
-    protected array $IdValue = [];
+    protected ?array $IdValue = null;
     /**
      * Constructor method for IncrementDbSequenceResponse
      * @uses IncrementDbSequenceResponse::setIdValue()
      * @param int[] $idValue
      */
-    public function __construct(array $idValue = [])
+    public function __construct(?array $idValue = null)
     {
         $this
             ->setIdValue($idValue);
@@ -35,18 +36,22 @@ class IncrementDbSequenceResponse extends AbstractStructBase
      * Get IdValue value
      * @return int[]
      */
-    public function getIdValue(): array
+    public function getIdValue(): ?array
     {
         return $this->IdValue;
     }
     /**
-     * This method is responsible for validating the values passed to the setIdValue method
+     * This method is responsible for validating the value(s) passed to the setIdValue method
      * This method is willingly generated in order to preserve the one-line inline validation within the setIdValue method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateIdValueForArrayConstraintsFromSetIdValue(array $values = []): string
+    public static function validateIdValueForArrayConstraintFromSetIdValue(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $incrementDbSequenceResponseIdValueItem) {
@@ -68,10 +73,10 @@ class IncrementDbSequenceResponse extends AbstractStructBase
      * @param int[] $idValue
      * @return \Pggns\MidocoApi\Documents\StructType\IncrementDbSequenceResponse
      */
-    public function setIdValue(array $idValue = []): self
+    public function setIdValue(?array $idValue = null): self
     {
         // validation for constraint: array
-        if ('' !== ($idValueArrayErrorMessage = self::validateIdValueForArrayConstraintsFromSetIdValue($idValue))) {
+        if ('' !== ($idValueArrayErrorMessage = self::validateIdValueForArrayConstraintFromSetIdValue($idValue))) {
             throw new InvalidArgumentException($idValueArrayErrorMessage, __LINE__);
         }
         $this->IdValue = $idValue;

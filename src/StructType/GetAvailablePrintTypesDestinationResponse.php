@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetAvailablePrintTypesDestinationResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAvailablePrintTypesDestinationResponse extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class GetAvailablePrintTypesDestinationResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $printType = [];
+    protected ?array $printType = null;
     /**
      * Constructor method for GetAvailablePrintTypesDestinationResponse
      * @uses GetAvailablePrintTypesDestinationResponse::setPrintType()
      * @param string[] $printType
      */
-    public function __construct(array $printType = [])
+    public function __construct(?array $printType = null)
     {
         $this
             ->setPrintType($printType);
@@ -35,18 +36,22 @@ class GetAvailablePrintTypesDestinationResponse extends AbstractStructBase
      * Get printType value
      * @return string[]
      */
-    public function getPrintType(): array
+    public function getPrintType(): ?array
     {
         return $this->printType;
     }
     /**
-     * This method is responsible for validating the values passed to the setPrintType method
+     * This method is responsible for validating the value(s) passed to the setPrintType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setPrintType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validatePrintTypeForArrayConstraintsFromSetPrintType(array $values = []): string
+    public static function validatePrintTypeForArrayConstraintFromSetPrintType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAvailablePrintTypesDestinationResponsePrintTypeItem) {
@@ -68,10 +73,10 @@ class GetAvailablePrintTypesDestinationResponse extends AbstractStructBase
      * @param string[] $printType
      * @return \Pggns\MidocoApi\Documents\StructType\GetAvailablePrintTypesDestinationResponse
      */
-    public function setPrintType(array $printType = []): self
+    public function setPrintType(?array $printType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($printTypeArrayErrorMessage = self::validatePrintTypeForArrayConstraintsFromSetPrintType($printType))) {
+        if ('' !== ($printTypeArrayErrorMessage = self::validatePrintTypeForArrayConstraintFromSetPrintType($printType))) {
             throw new InvalidArgumentException($printTypeArrayErrorMessage, __LINE__);
         }
         $this->printType = $printType;

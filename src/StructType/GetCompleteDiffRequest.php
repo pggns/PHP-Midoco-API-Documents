@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetCompleteDiffRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetCompleteDiffRequest extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class GetCompleteDiffRequest extends AbstractStructBase
      * - ref: DiffDocumentRefId
      * @var \Pggns\MidocoApi\Documents\StructType\DiffDocumentRefId[]
      */
-    protected array $DiffDocumentRefId = [];
+    protected ?array $DiffDocumentRefId = null;
     /**
      * The dtoType
      * @var string|null
@@ -34,7 +35,7 @@ class GetCompleteDiffRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DiffDocumentRefId[] $diffDocumentRefId
      * @param string $dtoType
      */
-    public function __construct(array $diffDocumentRefId = [], ?string $dtoType = null)
+    public function __construct(?array $diffDocumentRefId = null, ?string $dtoType = null)
     {
         $this
             ->setDiffDocumentRefId($diffDocumentRefId)
@@ -44,18 +45,22 @@ class GetCompleteDiffRequest extends AbstractStructBase
      * Get DiffDocumentRefId value
      * @return \Pggns\MidocoApi\Documents\StructType\DiffDocumentRefId[]
      */
-    public function getDiffDocumentRefId(): array
+    public function getDiffDocumentRefId(): ?array
     {
         return $this->DiffDocumentRefId;
     }
     /**
-     * This method is responsible for validating the values passed to the setDiffDocumentRefId method
+     * This method is responsible for validating the value(s) passed to the setDiffDocumentRefId method
      * This method is willingly generated in order to preserve the one-line inline validation within the setDiffDocumentRefId method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateDiffDocumentRefIdForArrayConstraintsFromSetDiffDocumentRefId(array $values = []): string
+    public static function validateDiffDocumentRefIdForArrayConstraintFromSetDiffDocumentRefId(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getCompleteDiffRequestDiffDocumentRefIdItem) {
@@ -77,10 +82,10 @@ class GetCompleteDiffRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DiffDocumentRefId[] $diffDocumentRefId
      * @return \Pggns\MidocoApi\Documents\StructType\GetCompleteDiffRequest
      */
-    public function setDiffDocumentRefId(array $diffDocumentRefId = []): self
+    public function setDiffDocumentRefId(?array $diffDocumentRefId = null): self
     {
         // validation for constraint: array
-        if ('' !== ($diffDocumentRefIdArrayErrorMessage = self::validateDiffDocumentRefIdForArrayConstraintsFromSetDiffDocumentRefId($diffDocumentRefId))) {
+        if ('' !== ($diffDocumentRefIdArrayErrorMessage = self::validateDiffDocumentRefIdForArrayConstraintFromSetDiffDocumentRefId($diffDocumentRefId))) {
             throw new InvalidArgumentException($diffDocumentRefIdArrayErrorMessage, __LINE__);
         }
         $this->DiffDocumentRefId = $diffDocumentRefId;

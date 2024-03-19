@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ListUsedVolumeResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ListUsedVolumeResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class ListUsedVolumeResponse extends AbstractStructBase
      * - ref: MidocoUsedVolume
      * @var \Pggns\MidocoApi\Documents\StructType\UsedVolumeDTO[]
      */
-    protected array $MidocoUsedVolume = [];
+    protected ?array $MidocoUsedVolume = null;
     /**
      * Constructor method for ListUsedVolumeResponse
      * @uses ListUsedVolumeResponse::setMidocoUsedVolume()
      * @param \Pggns\MidocoApi\Documents\StructType\UsedVolumeDTO[] $midocoUsedVolume
      */
-    public function __construct(array $midocoUsedVolume = [])
+    public function __construct(?array $midocoUsedVolume = null)
     {
         $this
             ->setMidocoUsedVolume($midocoUsedVolume);
@@ -36,18 +37,22 @@ class ListUsedVolumeResponse extends AbstractStructBase
      * Get MidocoUsedVolume value
      * @return \Pggns\MidocoApi\Documents\StructType\UsedVolumeDTO[]
      */
-    public function getMidocoUsedVolume(): array
+    public function getMidocoUsedVolume(): ?array
     {
         return $this->MidocoUsedVolume;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoUsedVolume method
+     * This method is responsible for validating the value(s) passed to the setMidocoUsedVolume method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoUsedVolume method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoUsedVolumeForArrayConstraintsFromSetMidocoUsedVolume(array $values = []): string
+    public static function validateMidocoUsedVolumeForArrayConstraintFromSetMidocoUsedVolume(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $listUsedVolumeResponseMidocoUsedVolumeItem) {
@@ -69,10 +74,10 @@ class ListUsedVolumeResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\UsedVolumeDTO[] $midocoUsedVolume
      * @return \Pggns\MidocoApi\Documents\StructType\ListUsedVolumeResponse
      */
-    public function setMidocoUsedVolume(array $midocoUsedVolume = []): self
+    public function setMidocoUsedVolume(?array $midocoUsedVolume = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoUsedVolumeArrayErrorMessage = self::validateMidocoUsedVolumeForArrayConstraintsFromSetMidocoUsedVolume($midocoUsedVolume))) {
+        if ('' !== ($midocoUsedVolumeArrayErrorMessage = self::validateMidocoUsedVolumeForArrayConstraintFromSetMidocoUsedVolume($midocoUsedVolume))) {
             throw new InvalidArgumentException($midocoUsedVolumeArrayErrorMessage, __LINE__);
         }
         $this->MidocoUsedVolume = $midocoUsedVolume;

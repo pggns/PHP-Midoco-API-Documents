@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SearchExternDocumentResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SearchExternDocumentResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class SearchExternDocumentResponse extends AbstractStructBase
      * - ref: MidocoExternDocument
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoExternDocument[]
      */
-    protected array $MidocoExternDocument = [];
+    protected ?array $MidocoExternDocument = null;
     /**
      * Constructor method for SearchExternDocumentResponse
      * @uses SearchExternDocumentResponse::setMidocoExternDocument()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoExternDocument[] $midocoExternDocument
      */
-    public function __construct(array $midocoExternDocument = [])
+    public function __construct(?array $midocoExternDocument = null)
     {
         $this
             ->setMidocoExternDocument($midocoExternDocument);
@@ -36,18 +37,22 @@ class SearchExternDocumentResponse extends AbstractStructBase
      * Get MidocoExternDocument value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoExternDocument[]
      */
-    public function getMidocoExternDocument(): array
+    public function getMidocoExternDocument(): ?array
     {
         return $this->MidocoExternDocument;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoExternDocument method
+     * This method is responsible for validating the value(s) passed to the setMidocoExternDocument method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoExternDocument method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoExternDocumentForArrayConstraintsFromSetMidocoExternDocument(array $values = []): string
+    public static function validateMidocoExternDocumentForArrayConstraintFromSetMidocoExternDocument(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $searchExternDocumentResponseMidocoExternDocumentItem) {
@@ -69,10 +74,10 @@ class SearchExternDocumentResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoExternDocument[] $midocoExternDocument
      * @return \Pggns\MidocoApi\Documents\StructType\SearchExternDocumentResponse
      */
-    public function setMidocoExternDocument(array $midocoExternDocument = []): self
+    public function setMidocoExternDocument(?array $midocoExternDocument = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoExternDocumentArrayErrorMessage = self::validateMidocoExternDocumentForArrayConstraintsFromSetMidocoExternDocument($midocoExternDocument))) {
+        if ('' !== ($midocoExternDocumentArrayErrorMessage = self::validateMidocoExternDocumentForArrayConstraintFromSetMidocoExternDocument($midocoExternDocument))) {
             throw new InvalidArgumentException($midocoExternDocumentArrayErrorMessage, __LINE__);
         }
         $this->MidocoExternDocument = $midocoExternDocument;

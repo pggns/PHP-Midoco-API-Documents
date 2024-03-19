@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for DeleteSignatureDocRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class DeleteSignatureDocRequest extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class DeleteSignatureDocRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var int[]
      */
-    protected array $signatureDocId = [];
+    protected ?array $signatureDocId = null;
     /**
      * Constructor method for DeleteSignatureDocRequest
      * @uses DeleteSignatureDocRequest::setSignatureDocId()
      * @param int[] $signatureDocId
      */
-    public function __construct(array $signatureDocId = [])
+    public function __construct(?array $signatureDocId = null)
     {
         $this
             ->setSignatureDocId($signatureDocId);
@@ -35,18 +36,22 @@ class DeleteSignatureDocRequest extends AbstractStructBase
      * Get signatureDocId value
      * @return int[]
      */
-    public function getSignatureDocId(): array
+    public function getSignatureDocId(): ?array
     {
         return $this->signatureDocId;
     }
     /**
-     * This method is responsible for validating the values passed to the setSignatureDocId method
+     * This method is responsible for validating the value(s) passed to the setSignatureDocId method
      * This method is willingly generated in order to preserve the one-line inline validation within the setSignatureDocId method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateSignatureDocIdForArrayConstraintsFromSetSignatureDocId(array $values = []): string
+    public static function validateSignatureDocIdForArrayConstraintFromSetSignatureDocId(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $deleteSignatureDocRequestSignatureDocIdItem) {
@@ -68,10 +73,10 @@ class DeleteSignatureDocRequest extends AbstractStructBase
      * @param int[] $signatureDocId
      * @return \Pggns\MidocoApi\Documents\StructType\DeleteSignatureDocRequest
      */
-    public function setSignatureDocId(array $signatureDocId = []): self
+    public function setSignatureDocId(?array $signatureDocId = null): self
     {
         // validation for constraint: array
-        if ('' !== ($signatureDocIdArrayErrorMessage = self::validateSignatureDocIdForArrayConstraintsFromSetSignatureDocId($signatureDocId))) {
+        if ('' !== ($signatureDocIdArrayErrorMessage = self::validateSignatureDocIdForArrayConstraintFromSetSignatureDocId($signatureDocId))) {
             throw new InvalidArgumentException($signatureDocIdArrayErrorMessage, __LINE__);
         }
         $this->signatureDocId = $signatureDocId;

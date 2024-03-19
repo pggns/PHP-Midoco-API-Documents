@@ -13,6 +13,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * - documentation: Request manifest attributes of jar files created during build
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetJarManifestsRequest extends AbstractStructBase
 {
 }

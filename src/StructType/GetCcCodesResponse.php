@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetCcCodesResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetCcCodesResponse extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class GetCcCodesResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $CcCode = [];
+    protected ?array $CcCode = null;
     /**
      * Constructor method for GetCcCodesResponse
      * @uses GetCcCodesResponse::setCcCode()
      * @param string[] $ccCode
      */
-    public function __construct(array $ccCode = [])
+    public function __construct(?array $ccCode = null)
     {
         $this
             ->setCcCode($ccCode);
@@ -35,18 +36,22 @@ class GetCcCodesResponse extends AbstractStructBase
      * Get CcCode value
      * @return string[]
      */
-    public function getCcCode(): array
+    public function getCcCode(): ?array
     {
         return $this->CcCode;
     }
     /**
-     * This method is responsible for validating the values passed to the setCcCode method
+     * This method is responsible for validating the value(s) passed to the setCcCode method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCcCode method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateCcCodeForArrayConstraintsFromSetCcCode(array $values = []): string
+    public static function validateCcCodeForArrayConstraintFromSetCcCode(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getCcCodesResponseCcCodeItem) {
@@ -68,10 +73,10 @@ class GetCcCodesResponse extends AbstractStructBase
      * @param string[] $ccCode
      * @return \Pggns\MidocoApi\Documents\StructType\GetCcCodesResponse
      */
-    public function setCcCode(array $ccCode = []): self
+    public function setCcCode(?array $ccCode = null): self
     {
         // validation for constraint: array
-        if ('' !== ($ccCodeArrayErrorMessage = self::validateCcCodeForArrayConstraintsFromSetCcCode($ccCode))) {
+        if ('' !== ($ccCodeArrayErrorMessage = self::validateCcCodeForArrayConstraintFromSetCcCode($ccCode))) {
             throw new InvalidArgumentException($ccCodeArrayErrorMessage, __LINE__);
         }
         $this->CcCode = $ccCode;

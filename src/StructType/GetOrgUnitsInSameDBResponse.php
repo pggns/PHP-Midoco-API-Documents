@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetOrgUnitsInSameDBResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetOrgUnitsInSameDBResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetOrgUnitsInSameDBResponse extends AbstractStructBase
      * - ref: MidocoSearchUnit
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoSearchUnit[]
      */
-    protected array $MidocoSearchUnit = [];
+    protected ?array $MidocoSearchUnit = null;
     /**
      * Constructor method for GetOrgUnitsInSameDBResponse
      * @uses GetOrgUnitsInSameDBResponse::setMidocoSearchUnit()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoSearchUnit[] $midocoSearchUnit
      */
-    public function __construct(array $midocoSearchUnit = [])
+    public function __construct(?array $midocoSearchUnit = null)
     {
         $this
             ->setMidocoSearchUnit($midocoSearchUnit);
@@ -36,18 +37,22 @@ class GetOrgUnitsInSameDBResponse extends AbstractStructBase
      * Get MidocoSearchUnit value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoSearchUnit[]
      */
-    public function getMidocoSearchUnit(): array
+    public function getMidocoSearchUnit(): ?array
     {
         return $this->MidocoSearchUnit;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSearchUnit method
+     * This method is responsible for validating the value(s) passed to the setMidocoSearchUnit method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSearchUnit method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSearchUnitForArrayConstraintsFromSetMidocoSearchUnit(array $values = []): string
+    public static function validateMidocoSearchUnitForArrayConstraintFromSetMidocoSearchUnit(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getOrgUnitsInSameDBResponseMidocoSearchUnitItem) {
@@ -69,10 +74,10 @@ class GetOrgUnitsInSameDBResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoSearchUnit[] $midocoSearchUnit
      * @return \Pggns\MidocoApi\Documents\StructType\GetOrgUnitsInSameDBResponse
      */
-    public function setMidocoSearchUnit(array $midocoSearchUnit = []): self
+    public function setMidocoSearchUnit(?array $midocoSearchUnit = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSearchUnitArrayErrorMessage = self::validateMidocoSearchUnitForArrayConstraintsFromSetMidocoSearchUnit($midocoSearchUnit))) {
+        if ('' !== ($midocoSearchUnitArrayErrorMessage = self::validateMidocoSearchUnitForArrayConstraintFromSetMidocoSearchUnit($midocoSearchUnit))) {
             throw new InvalidArgumentException($midocoSearchUnitArrayErrorMessage, __LINE__);
         }
         $this->MidocoSearchUnit = $midocoSearchUnit;

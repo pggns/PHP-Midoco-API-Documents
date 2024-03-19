@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoDbiDefinitionType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoDbiDefinitionType extends AbstractStructBase
 {
     /**
@@ -30,7 +31,7 @@ class MidocoDbiDefinitionType extends AbstractStructBase
      * - ref: MidocoDbiDefs
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefs[]
      */
-    protected array $MidocoDbiDefs = [];
+    protected ?array $MidocoDbiDefs = null;
     /**
      * Constructor method for MidocoDbiDefinitionType
      * @uses MidocoDbiDefinitionType::setMidocoDbiUpdate()
@@ -38,7 +39,7 @@ class MidocoDbiDefinitionType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefs[] $midocoDbiDefs
      */
-    public function __construct(\Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate, array $midocoDbiDefs = [])
+    public function __construct(\Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate, ?array $midocoDbiDefs = null)
     {
         $this
             ->setMidocoDbiUpdate($midocoDbiUpdate)
@@ -67,18 +68,22 @@ class MidocoDbiDefinitionType extends AbstractStructBase
      * Get MidocoDbiDefs value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefs[]
      */
-    public function getMidocoDbiDefs(): array
+    public function getMidocoDbiDefs(): ?array
     {
         return $this->MidocoDbiDefs;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDbiDefs method
+     * This method is responsible for validating the value(s) passed to the setMidocoDbiDefs method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDbiDefs method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDbiDefsForArrayConstraintsFromSetMidocoDbiDefs(array $values = []): string
+    public static function validateMidocoDbiDefsForArrayConstraintFromSetMidocoDbiDefs(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoDbiDefinitionTypeMidocoDbiDefsItem) {
@@ -100,10 +105,10 @@ class MidocoDbiDefinitionType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefs[] $midocoDbiDefs
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionType
      */
-    public function setMidocoDbiDefs(array $midocoDbiDefs = []): self
+    public function setMidocoDbiDefs(?array $midocoDbiDefs = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDbiDefsArrayErrorMessage = self::validateMidocoDbiDefsForArrayConstraintsFromSetMidocoDbiDefs($midocoDbiDefs))) {
+        if ('' !== ($midocoDbiDefsArrayErrorMessage = self::validateMidocoDbiDefsForArrayConstraintFromSetMidocoDbiDefs($midocoDbiDefs))) {
             throw new InvalidArgumentException($midocoDbiDefsArrayErrorMessage, __LINE__);
         }
         $this->MidocoDbiDefs = $midocoDbiDefs;

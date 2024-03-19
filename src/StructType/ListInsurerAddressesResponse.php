@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ListInsurerAddressesResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ListInsurerAddressesResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class ListInsurerAddressesResponse extends AbstractStructBase
      * - ref: MidocoInsurerAddress
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoInsurerAddress[]
      */
-    protected array $MidocoInsurerAddress = [];
+    protected ?array $MidocoInsurerAddress = null;
     /**
      * Constructor method for ListInsurerAddressesResponse
      * @uses ListInsurerAddressesResponse::setMidocoInsurerAddress()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoInsurerAddress[] $midocoInsurerAddress
      */
-    public function __construct(array $midocoInsurerAddress = [])
+    public function __construct(?array $midocoInsurerAddress = null)
     {
         $this
             ->setMidocoInsurerAddress($midocoInsurerAddress);
@@ -36,18 +37,22 @@ class ListInsurerAddressesResponse extends AbstractStructBase
      * Get MidocoInsurerAddress value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoInsurerAddress[]
      */
-    public function getMidocoInsurerAddress(): array
+    public function getMidocoInsurerAddress(): ?array
     {
         return $this->MidocoInsurerAddress;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoInsurerAddress method
+     * This method is responsible for validating the value(s) passed to the setMidocoInsurerAddress method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoInsurerAddress method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoInsurerAddressForArrayConstraintsFromSetMidocoInsurerAddress(array $values = []): string
+    public static function validateMidocoInsurerAddressForArrayConstraintFromSetMidocoInsurerAddress(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $listInsurerAddressesResponseMidocoInsurerAddressItem) {
@@ -69,10 +74,10 @@ class ListInsurerAddressesResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoInsurerAddress[] $midocoInsurerAddress
      * @return \Pggns\MidocoApi\Documents\StructType\ListInsurerAddressesResponse
      */
-    public function setMidocoInsurerAddress(array $midocoInsurerAddress = []): self
+    public function setMidocoInsurerAddress(?array $midocoInsurerAddress = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoInsurerAddressArrayErrorMessage = self::validateMidocoInsurerAddressForArrayConstraintsFromSetMidocoInsurerAddress($midocoInsurerAddress))) {
+        if ('' !== ($midocoInsurerAddressArrayErrorMessage = self::validateMidocoInsurerAddressForArrayConstraintFromSetMidocoInsurerAddress($midocoInsurerAddress))) {
             throw new InvalidArgumentException($midocoInsurerAddressArrayErrorMessage, __LINE__);
         }
         $this->MidocoInsurerAddress = $midocoInsurerAddress;

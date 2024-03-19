@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for JarManifest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class JarManifest extends AbstractStructBase
 {
     /**

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetMergedServiceStatiResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetMergedServiceStatiResponse extends AbstractStructBase
 {
     /**
@@ -20,13 +21,13 @@ class GetMergedServiceStatiResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $status = [];
+    protected ?array $status = null;
     /**
      * Constructor method for GetMergedServiceStatiResponse
      * @uses GetMergedServiceStatiResponse::setStatus()
      * @param string[] $status
      */
-    public function __construct(array $status = [])
+    public function __construct(?array $status = null)
     {
         $this
             ->setStatus($status);
@@ -35,18 +36,22 @@ class GetMergedServiceStatiResponse extends AbstractStructBase
      * Get status value
      * @return string[]
      */
-    public function getStatus(): array
+    public function getStatus(): ?array
     {
         return $this->status;
     }
     /**
-     * This method is responsible for validating the values passed to the setStatus method
+     * This method is responsible for validating the value(s) passed to the setStatus method
      * This method is willingly generated in order to preserve the one-line inline validation within the setStatus method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateStatusForArrayConstraintsFromSetStatus(array $values = []): string
+    public static function validateStatusForArrayConstraintFromSetStatus(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getMergedServiceStatiResponseStatusItem) {
@@ -68,10 +73,10 @@ class GetMergedServiceStatiResponse extends AbstractStructBase
      * @param string[] $status
      * @return \Pggns\MidocoApi\Documents\StructType\GetMergedServiceStatiResponse
      */
-    public function setStatus(array $status = []): self
+    public function setStatus(?array $status = null): self
     {
         // validation for constraint: array
-        if ('' !== ($statusArrayErrorMessage = self::validateStatusForArrayConstraintsFromSetStatus($status))) {
+        if ('' !== ($statusArrayErrorMessage = self::validateStatusForArrayConstraintFromSetStatus($status))) {
             throw new InvalidArgumentException($statusArrayErrorMessage, __LINE__);
         }
         $this->status = $status;

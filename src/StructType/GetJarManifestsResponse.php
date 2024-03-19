@@ -13,6 +13,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * - documentation: Returns manifest attributes of jar files created during build
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetJarManifestsResponse extends AbstractStructBase
 {
     /**
@@ -22,13 +23,13 @@ class GetJarManifestsResponse extends AbstractStructBase
      * - minOccurs: 0
      * @var \Pggns\MidocoApi\Documents\StructType\JarManifest[]
      */
-    protected array $JarManifest = [];
+    protected ?array $JarManifest = null;
     /**
      * Constructor method for GetJarManifestsResponse
      * @uses GetJarManifestsResponse::setJarManifest()
      * @param \Pggns\MidocoApi\Documents\StructType\JarManifest[] $jarManifest
      */
-    public function __construct(array $jarManifest = [])
+    public function __construct(?array $jarManifest = null)
     {
         $this
             ->setJarManifest($jarManifest);
@@ -37,18 +38,22 @@ class GetJarManifestsResponse extends AbstractStructBase
      * Get JarManifest value
      * @return \Pggns\MidocoApi\Documents\StructType\JarManifest[]
      */
-    public function getJarManifest(): array
+    public function getJarManifest(): ?array
     {
         return $this->JarManifest;
     }
     /**
-     * This method is responsible for validating the values passed to the setJarManifest method
+     * This method is responsible for validating the value(s) passed to the setJarManifest method
      * This method is willingly generated in order to preserve the one-line inline validation within the setJarManifest method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateJarManifestForArrayConstraintsFromSetJarManifest(array $values = []): string
+    public static function validateJarManifestForArrayConstraintFromSetJarManifest(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getJarManifestsResponseJarManifestItem) {
@@ -70,10 +75,10 @@ class GetJarManifestsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\JarManifest[] $jarManifest
      * @return \Pggns\MidocoApi\Documents\StructType\GetJarManifestsResponse
      */
-    public function setJarManifest(array $jarManifest = []): self
+    public function setJarManifest(?array $jarManifest = null): self
     {
         // validation for constraint: array
-        if ('' !== ($jarManifestArrayErrorMessage = self::validateJarManifestForArrayConstraintsFromSetJarManifest($jarManifest))) {
+        if ('' !== ($jarManifestArrayErrorMessage = self::validateJarManifestForArrayConstraintFromSetJarManifest($jarManifest))) {
             throw new InvalidArgumentException($jarManifestArrayErrorMessage, __LINE__);
         }
         $this->JarManifest = $jarManifest;

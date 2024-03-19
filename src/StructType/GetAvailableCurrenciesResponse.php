@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetAvailableCurrenciesResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAvailableCurrenciesResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetAvailableCurrenciesResponse extends AbstractStructBase
      * - ref: MidocoCurrency
      * @var \Pggns\MidocoApi\Documents\StructType\CurrencyDTO[]
      */
-    protected array $MidocoCurrency = [];
+    protected ?array $MidocoCurrency = null;
     /**
      * Constructor method for GetAvailableCurrenciesResponse
      * @uses GetAvailableCurrenciesResponse::setMidocoCurrency()
      * @param \Pggns\MidocoApi\Documents\StructType\CurrencyDTO[] $midocoCurrency
      */
-    public function __construct(array $midocoCurrency = [])
+    public function __construct(?array $midocoCurrency = null)
     {
         $this
             ->setMidocoCurrency($midocoCurrency);
@@ -36,18 +37,22 @@ class GetAvailableCurrenciesResponse extends AbstractStructBase
      * Get MidocoCurrency value
      * @return \Pggns\MidocoApi\Documents\StructType\CurrencyDTO[]
      */
-    public function getMidocoCurrency(): array
+    public function getMidocoCurrency(): ?array
     {
         return $this->MidocoCurrency;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoCurrency method
+     * This method is responsible for validating the value(s) passed to the setMidocoCurrency method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoCurrency method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoCurrencyForArrayConstraintsFromSetMidocoCurrency(array $values = []): string
+    public static function validateMidocoCurrencyForArrayConstraintFromSetMidocoCurrency(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAvailableCurrenciesResponseMidocoCurrencyItem) {
@@ -69,10 +74,10 @@ class GetAvailableCurrenciesResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\CurrencyDTO[] $midocoCurrency
      * @return \Pggns\MidocoApi\Documents\StructType\GetAvailableCurrenciesResponse
      */
-    public function setMidocoCurrency(array $midocoCurrency = []): self
+    public function setMidocoCurrency(?array $midocoCurrency = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoCurrencyArrayErrorMessage = self::validateMidocoCurrencyForArrayConstraintsFromSetMidocoCurrency($midocoCurrency))) {
+        if ('' !== ($midocoCurrencyArrayErrorMessage = self::validateMidocoCurrencyForArrayConstraintFromSetMidocoCurrency($midocoCurrency))) {
             throw new InvalidArgumentException($midocoCurrencyArrayErrorMessage, __LINE__);
         }
         $this->MidocoCurrency = $midocoCurrency;

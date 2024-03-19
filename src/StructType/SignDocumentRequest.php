@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SignDocumentRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SignDocumentRequest extends AbstractStructBase
 {
     /**
@@ -43,7 +44,7 @@ class SignDocumentRequest extends AbstractStructBase
      * - ref: SignatureLocation
      * @var \Pggns\MidocoApi\Documents\StructType\SignatureLocation[]
      */
-    protected array $SignatureLocation = [];
+    protected ?array $SignatureLocation = null;
     /**
      * The AutoFillLocation
      * Meta information extracted from the WSDL
@@ -52,7 +53,7 @@ class SignDocumentRequest extends AbstractStructBase
      * - ref: AutoFillLocation
      * @var \Pggns\MidocoApi\Documents\StructType\AutoFillLocation[]
      */
-    protected array $AutoFillLocation = [];
+    protected ?array $AutoFillLocation = null;
     /**
      * Constructor method for SignDocumentRequest
      * @uses SignDocumentRequest::setDocumentToSign()
@@ -68,7 +69,7 @@ class SignDocumentRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\SignatureLocation[] $signatureLocation
      * @param \Pggns\MidocoApi\Documents\StructType\AutoFillLocation[] $autoFillLocation
      */
-    public function __construct(?string $documentToSign = null, ?string $signer = null, ?string $reason = null, ?string $signatureGraphics = null, array $signatureLocation = [], array $autoFillLocation = [])
+    public function __construct(?string $documentToSign = null, ?string $signer = null, ?string $reason = null, ?string $signatureGraphics = null, ?array $signatureLocation = null, ?array $autoFillLocation = null)
     {
         $this
             ->setDocumentToSign($documentToSign)
@@ -174,18 +175,22 @@ class SignDocumentRequest extends AbstractStructBase
      * Get SignatureLocation value
      * @return \Pggns\MidocoApi\Documents\StructType\SignatureLocation[]
      */
-    public function getSignatureLocation(): array
+    public function getSignatureLocation(): ?array
     {
         return $this->SignatureLocation;
     }
     /**
-     * This method is responsible for validating the values passed to the setSignatureLocation method
+     * This method is responsible for validating the value(s) passed to the setSignatureLocation method
      * This method is willingly generated in order to preserve the one-line inline validation within the setSignatureLocation method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateSignatureLocationForArrayConstraintsFromSetSignatureLocation(array $values = []): string
+    public static function validateSignatureLocationForArrayConstraintFromSetSignatureLocation(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $signDocumentRequestSignatureLocationItem) {
@@ -207,10 +212,10 @@ class SignDocumentRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\SignatureLocation[] $signatureLocation
      * @return \Pggns\MidocoApi\Documents\StructType\SignDocumentRequest
      */
-    public function setSignatureLocation(array $signatureLocation = []): self
+    public function setSignatureLocation(?array $signatureLocation = null): self
     {
         // validation for constraint: array
-        if ('' !== ($signatureLocationArrayErrorMessage = self::validateSignatureLocationForArrayConstraintsFromSetSignatureLocation($signatureLocation))) {
+        if ('' !== ($signatureLocationArrayErrorMessage = self::validateSignatureLocationForArrayConstraintFromSetSignatureLocation($signatureLocation))) {
             throw new InvalidArgumentException($signatureLocationArrayErrorMessage, __LINE__);
         }
         $this->SignatureLocation = $signatureLocation;
@@ -237,18 +242,22 @@ class SignDocumentRequest extends AbstractStructBase
      * Get AutoFillLocation value
      * @return \Pggns\MidocoApi\Documents\StructType\AutoFillLocation[]
      */
-    public function getAutoFillLocation(): array
+    public function getAutoFillLocation(): ?array
     {
         return $this->AutoFillLocation;
     }
     /**
-     * This method is responsible for validating the values passed to the setAutoFillLocation method
+     * This method is responsible for validating the value(s) passed to the setAutoFillLocation method
      * This method is willingly generated in order to preserve the one-line inline validation within the setAutoFillLocation method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateAutoFillLocationForArrayConstraintsFromSetAutoFillLocation(array $values = []): string
+    public static function validateAutoFillLocationForArrayConstraintFromSetAutoFillLocation(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $signDocumentRequestAutoFillLocationItem) {
@@ -270,10 +279,10 @@ class SignDocumentRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\AutoFillLocation[] $autoFillLocation
      * @return \Pggns\MidocoApi\Documents\StructType\SignDocumentRequest
      */
-    public function setAutoFillLocation(array $autoFillLocation = []): self
+    public function setAutoFillLocation(?array $autoFillLocation = null): self
     {
         // validation for constraint: array
-        if ('' !== ($autoFillLocationArrayErrorMessage = self::validateAutoFillLocationForArrayConstraintsFromSetAutoFillLocation($autoFillLocation))) {
+        if ('' !== ($autoFillLocationArrayErrorMessage = self::validateAutoFillLocationForArrayConstraintFromSetAutoFillLocation($autoFillLocation))) {
             throw new InvalidArgumentException($autoFillLocationArrayErrorMessage, __LINE__);
         }
         $this->AutoFillLocation = $autoFillLocation;

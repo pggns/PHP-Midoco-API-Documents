@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SaveExternDocumentRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SaveExternDocumentRequest extends AbstractStructBase
 {
     /**
@@ -36,7 +37,7 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * - maxOccurs: unbounded
      * @var string[]
      */
-    protected array $mailTo = [];
+    protected ?array $mailTo = null;
     /**
      * The mailCc
      * Meta information extracted from the WSDL
@@ -44,7 +45,7 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $mailCc = [];
+    protected ?array $mailCc = null;
     /**
      * The mailBCc
      * Meta information extracted from the WSDL
@@ -52,7 +53,7 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * - minOccurs: 0
      * @var string[]
      */
-    protected array $mailBCc = [];
+    protected ?array $mailBCc = null;
     /**
      * The MidocoVatDefinition
      * Meta information extracted from the WSDL
@@ -61,7 +62,7 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * - ref: orderglobalsd:MidocoVatDefinition
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoVatDefinition[]
      */
-    protected array $MidocoVatDefinition = [];
+    protected ?array $MidocoVatDefinition = null;
     /**
      * The mailFrom
      * @var string|null
@@ -156,7 +157,7 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * @param string $mailBody
      * @param string $mailSubject
      */
-    public function __construct(?string $media = null, ?string $document = null, ?\Pggns\MidocoApi\Documents\StructType\MidocoExtDocumentDesc $midocoExtDocumentDesc = null, array $mailTo = [], array $mailCc = [], array $mailBCc = [], array $midocoVatDefinition = [], ?string $mailFrom = null, ?string $debitorNo = null, ?string $preferredAdapter = null, ?int $midocoRepositoryId = null, ?bool $signature = null, ?string $currency = null, ?int $voidedInvoiceNo = null, ?int $orderNo = null, ?int $voidedReceiptNo = null, ?string $mailBody = null, ?string $mailSubject = null)
+    public function __construct(?string $media = null, ?string $document = null, ?\Pggns\MidocoApi\Documents\StructType\MidocoExtDocumentDesc $midocoExtDocumentDesc = null, ?array $mailTo = null, ?array $mailCc = null, ?array $mailBCc = null, ?array $midocoVatDefinition = null, ?string $mailFrom = null, ?string $debitorNo = null, ?string $preferredAdapter = null, ?int $midocoRepositoryId = null, ?bool $signature = null, ?string $currency = null, ?int $voidedInvoiceNo = null, ?int $orderNo = null, ?int $voidedReceiptNo = null, ?string $mailBody = null, ?string $mailSubject = null)
     {
         $this
             ->setMedia($media)
@@ -247,18 +248,22 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * Get mailTo value
      * @return string[]
      */
-    public function getMailTo(): array
+    public function getMailTo(): ?array
     {
         return $this->mailTo;
     }
     /**
-     * This method is responsible for validating the values passed to the setMailTo method
+     * This method is responsible for validating the value(s) passed to the setMailTo method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMailTo method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMailToForArrayConstraintsFromSetMailTo(array $values = []): string
+    public static function validateMailToForArrayConstraintFromSetMailTo(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $saveExternDocumentRequestMailToItem) {
@@ -280,10 +285,10 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * @param string[] $mailTo
      * @return \Pggns\MidocoApi\Documents\StructType\SaveExternDocumentRequest
      */
-    public function setMailTo(array $mailTo = []): self
+    public function setMailTo(?array $mailTo = null): self
     {
         // validation for constraint: array
-        if ('' !== ($mailToArrayErrorMessage = self::validateMailToForArrayConstraintsFromSetMailTo($mailTo))) {
+        if ('' !== ($mailToArrayErrorMessage = self::validateMailToForArrayConstraintFromSetMailTo($mailTo))) {
             throw new InvalidArgumentException($mailToArrayErrorMessage, __LINE__);
         }
         $this->mailTo = $mailTo;
@@ -310,18 +315,22 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * Get mailCc value
      * @return string[]
      */
-    public function getMailCc(): array
+    public function getMailCc(): ?array
     {
         return $this->mailCc;
     }
     /**
-     * This method is responsible for validating the values passed to the setMailCc method
+     * This method is responsible for validating the value(s) passed to the setMailCc method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMailCc method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMailCcForArrayConstraintsFromSetMailCc(array $values = []): string
+    public static function validateMailCcForArrayConstraintFromSetMailCc(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $saveExternDocumentRequestMailCcItem) {
@@ -343,10 +352,10 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * @param string[] $mailCc
      * @return \Pggns\MidocoApi\Documents\StructType\SaveExternDocumentRequest
      */
-    public function setMailCc(array $mailCc = []): self
+    public function setMailCc(?array $mailCc = null): self
     {
         // validation for constraint: array
-        if ('' !== ($mailCcArrayErrorMessage = self::validateMailCcForArrayConstraintsFromSetMailCc($mailCc))) {
+        if ('' !== ($mailCcArrayErrorMessage = self::validateMailCcForArrayConstraintFromSetMailCc($mailCc))) {
             throw new InvalidArgumentException($mailCcArrayErrorMessage, __LINE__);
         }
         $this->mailCc = $mailCc;
@@ -373,18 +382,22 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * Get mailBCc value
      * @return string[]
      */
-    public function getMailBCc(): array
+    public function getMailBCc(): ?array
     {
         return $this->mailBCc;
     }
     /**
-     * This method is responsible for validating the values passed to the setMailBCc method
+     * This method is responsible for validating the value(s) passed to the setMailBCc method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMailBCc method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMailBCcForArrayConstraintsFromSetMailBCc(array $values = []): string
+    public static function validateMailBCcForArrayConstraintFromSetMailBCc(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $saveExternDocumentRequestMailBCcItem) {
@@ -406,10 +419,10 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * @param string[] $mailBCc
      * @return \Pggns\MidocoApi\Documents\StructType\SaveExternDocumentRequest
      */
-    public function setMailBCc(array $mailBCc = []): self
+    public function setMailBCc(?array $mailBCc = null): self
     {
         // validation for constraint: array
-        if ('' !== ($mailBCcArrayErrorMessage = self::validateMailBCcForArrayConstraintsFromSetMailBCc($mailBCc))) {
+        if ('' !== ($mailBCcArrayErrorMessage = self::validateMailBCcForArrayConstraintFromSetMailBCc($mailBCc))) {
             throw new InvalidArgumentException($mailBCcArrayErrorMessage, __LINE__);
         }
         $this->mailBCc = $mailBCc;
@@ -436,18 +449,22 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * Get MidocoVatDefinition value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoVatDefinition[]
      */
-    public function getMidocoVatDefinition(): array
+    public function getMidocoVatDefinition(): ?array
     {
         return $this->MidocoVatDefinition;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoVatDefinition method
+     * This method is responsible for validating the value(s) passed to the setMidocoVatDefinition method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoVatDefinition method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoVatDefinitionForArrayConstraintsFromSetMidocoVatDefinition(array $values = []): string
+    public static function validateMidocoVatDefinitionForArrayConstraintFromSetMidocoVatDefinition(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $saveExternDocumentRequestMidocoVatDefinitionItem) {
@@ -469,10 +486,10 @@ class SaveExternDocumentRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoVatDefinition[] $midocoVatDefinition
      * @return \Pggns\MidocoApi\Documents\StructType\SaveExternDocumentRequest
      */
-    public function setMidocoVatDefinition(array $midocoVatDefinition = []): self
+    public function setMidocoVatDefinition(?array $midocoVatDefinition = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoVatDefinitionArrayErrorMessage = self::validateMidocoVatDefinitionForArrayConstraintsFromSetMidocoVatDefinition($midocoVatDefinition))) {
+        if ('' !== ($midocoVatDefinitionArrayErrorMessage = self::validateMidocoVatDefinitionForArrayConstraintFromSetMidocoVatDefinition($midocoVatDefinition))) {
             throw new InvalidArgumentException($midocoVatDefinitionArrayErrorMessage, __LINE__);
         }
         $this->MidocoVatDefinition = $midocoVatDefinition;

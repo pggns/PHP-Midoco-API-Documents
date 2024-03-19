@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetAssignedSequenceRangesResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAssignedSequenceRangesResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetAssignedSequenceRangesResponse extends AbstractStructBase
      * - ref: MidocoSequenceRange
      * @var \Pggns\MidocoApi\Documents\StructType\SequencerangeDTO[]
      */
-    protected array $MidocoSequenceRange = [];
+    protected ?array $MidocoSequenceRange = null;
     /**
      * Constructor method for GetAssignedSequenceRangesResponse
      * @uses GetAssignedSequenceRangesResponse::setMidocoSequenceRange()
      * @param \Pggns\MidocoApi\Documents\StructType\SequencerangeDTO[] $midocoSequenceRange
      */
-    public function __construct(array $midocoSequenceRange = [])
+    public function __construct(?array $midocoSequenceRange = null)
     {
         $this
             ->setMidocoSequenceRange($midocoSequenceRange);
@@ -36,18 +37,22 @@ class GetAssignedSequenceRangesResponse extends AbstractStructBase
      * Get MidocoSequenceRange value
      * @return \Pggns\MidocoApi\Documents\StructType\SequencerangeDTO[]
      */
-    public function getMidocoSequenceRange(): array
+    public function getMidocoSequenceRange(): ?array
     {
         return $this->MidocoSequenceRange;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoSequenceRange method
+     * This method is responsible for validating the value(s) passed to the setMidocoSequenceRange method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoSequenceRange method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoSequenceRangeForArrayConstraintsFromSetMidocoSequenceRange(array $values = []): string
+    public static function validateMidocoSequenceRangeForArrayConstraintFromSetMidocoSequenceRange(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAssignedSequenceRangesResponseMidocoSequenceRangeItem) {
@@ -69,10 +74,10 @@ class GetAssignedSequenceRangesResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\SequencerangeDTO[] $midocoSequenceRange
      * @return \Pggns\MidocoApi\Documents\StructType\GetAssignedSequenceRangesResponse
      */
-    public function setMidocoSequenceRange(array $midocoSequenceRange = []): self
+    public function setMidocoSequenceRange(?array $midocoSequenceRange = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoSequenceRangeArrayErrorMessage = self::validateMidocoSequenceRangeForArrayConstraintsFromSetMidocoSequenceRange($midocoSequenceRange))) {
+        if ('' !== ($midocoSequenceRangeArrayErrorMessage = self::validateMidocoSequenceRangeForArrayConstraintFromSetMidocoSequenceRange($midocoSequenceRange))) {
             throw new InvalidArgumentException($midocoSequenceRangeArrayErrorMessage, __LINE__);
         }
         $this->MidocoSequenceRange = $midocoSequenceRange;

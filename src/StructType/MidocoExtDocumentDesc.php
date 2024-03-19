@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoExtDocumentDesc StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoExtDocumentDesc extends AbstractStructBase
 {
     /**
@@ -124,16 +125,16 @@ class MidocoExtDocumentDesc extends AbstractStructBase
      */
     public function getMidocoBillingDocument(): ?\Pggns\MidocoApi\Documents\StructType\MidocoBillingDocument
     {
-        return isset($this->MidocoBillingDocument) ? $this->MidocoBillingDocument : null;
+        return $this->MidocoBillingDocument ?? null;
     }
     /**
-     * This method is responsible for validating the value passed to the setMidocoBillingDocument method
+     * This method is responsible for validating the value(s) passed to the setMidocoBillingDocument method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoBillingDocument method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateMidocoBillingDocumentForChoiceConstraintsFromSetMidocoBillingDocument($value): string
+    public function validateMidocoBillingDocumentForChoiceConstraintFromSetMidocoBillingDocument($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -168,7 +169,7 @@ class MidocoExtDocumentDesc extends AbstractStructBase
     public function setMidocoBillingDocument(?\Pggns\MidocoApi\Documents\StructType\MidocoBillingDocument $midocoBillingDocument = null): self
     {
         // validation for constraint: choice(MidocoBillingDocument, MidocoInvoice, MidocoReceipt, CashBookInfo)
-        if ('' !== ($midocoBillingDocumentChoiceErrorMessage = self::validateMidocoBillingDocumentForChoiceConstraintsFromSetMidocoBillingDocument($midocoBillingDocument))) {
+        if ('' !== ($midocoBillingDocumentChoiceErrorMessage = self::validateMidocoBillingDocumentForChoiceConstraintFromSetMidocoBillingDocument($midocoBillingDocument))) {
             throw new InvalidArgumentException($midocoBillingDocumentChoiceErrorMessage, __LINE__);
         }
         if (is_null($midocoBillingDocument) || (is_array($midocoBillingDocument) && empty($midocoBillingDocument))) {
@@ -185,16 +186,16 @@ class MidocoExtDocumentDesc extends AbstractStructBase
      */
     public function getMidocoInvoice(): ?\Pggns\MidocoApi\Documents\StructType\MidocoInvoice
     {
-        return isset($this->MidocoInvoice) ? $this->MidocoInvoice : null;
+        return $this->MidocoInvoice ?? null;
     }
     /**
-     * This method is responsible for validating the value passed to the setMidocoInvoice method
+     * This method is responsible for validating the value(s) passed to the setMidocoInvoice method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoInvoice method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateMidocoInvoiceForChoiceConstraintsFromSetMidocoInvoice($value): string
+    public function validateMidocoInvoiceForChoiceConstraintFromSetMidocoInvoice($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -229,7 +230,7 @@ class MidocoExtDocumentDesc extends AbstractStructBase
     public function setMidocoInvoice(?\Pggns\MidocoApi\Documents\StructType\MidocoInvoice $midocoInvoice = null): self
     {
         // validation for constraint: choice(MidocoBillingDocument, MidocoInvoice, MidocoReceipt, CashBookInfo)
-        if ('' !== ($midocoInvoiceChoiceErrorMessage = self::validateMidocoInvoiceForChoiceConstraintsFromSetMidocoInvoice($midocoInvoice))) {
+        if ('' !== ($midocoInvoiceChoiceErrorMessage = self::validateMidocoInvoiceForChoiceConstraintFromSetMidocoInvoice($midocoInvoice))) {
             throw new InvalidArgumentException($midocoInvoiceChoiceErrorMessage, __LINE__);
         }
         if (is_null($midocoInvoice) || (is_array($midocoInvoice) && empty($midocoInvoice))) {
@@ -246,16 +247,16 @@ class MidocoExtDocumentDesc extends AbstractStructBase
      */
     public function getMidocoReceipt(): ?\Pggns\MidocoApi\Documents\StructType\MidocoReceipt
     {
-        return isset($this->MidocoReceipt) ? $this->MidocoReceipt : null;
+        return $this->MidocoReceipt ?? null;
     }
     /**
-     * This method is responsible for validating the value passed to the setMidocoReceipt method
+     * This method is responsible for validating the value(s) passed to the setMidocoReceipt method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoReceipt method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateMidocoReceiptForChoiceConstraintsFromSetMidocoReceipt($value): string
+    public function validateMidocoReceiptForChoiceConstraintFromSetMidocoReceipt($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -290,7 +291,7 @@ class MidocoExtDocumentDesc extends AbstractStructBase
     public function setMidocoReceipt(?\Pggns\MidocoApi\Documents\StructType\MidocoReceipt $midocoReceipt = null): self
     {
         // validation for constraint: choice(MidocoBillingDocument, MidocoInvoice, MidocoReceipt, CashBookInfo)
-        if ('' !== ($midocoReceiptChoiceErrorMessage = self::validateMidocoReceiptForChoiceConstraintsFromSetMidocoReceipt($midocoReceipt))) {
+        if ('' !== ($midocoReceiptChoiceErrorMessage = self::validateMidocoReceiptForChoiceConstraintFromSetMidocoReceipt($midocoReceipt))) {
             throw new InvalidArgumentException($midocoReceiptChoiceErrorMessage, __LINE__);
         }
         if (is_null($midocoReceipt) || (is_array($midocoReceipt) && empty($midocoReceipt))) {
@@ -307,16 +308,16 @@ class MidocoExtDocumentDesc extends AbstractStructBase
      */
     public function getCashBookInfo(): ?\Pggns\MidocoApi\Documents\StructType\CashBookInfo
     {
-        return isset($this->CashBookInfo) ? $this->CashBookInfo : null;
+        return $this->CashBookInfo ?? null;
     }
     /**
-     * This method is responsible for validating the value passed to the setCashBookInfo method
+     * This method is responsible for validating the value(s) passed to the setCashBookInfo method
      * This method is willingly generated in order to preserve the one-line inline validation within the setCashBookInfo method
      * This has to validate that the property which is being set is the only one among the given choices
      * @param mixed $value
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public function validateCashBookInfoForChoiceConstraintsFromSetCashBookInfo($value): string
+    public function validateCashBookInfoForChoiceConstraintFromSetCashBookInfo($value): string
     {
         $message = '';
         if (is_null($value)) {
@@ -351,7 +352,7 @@ class MidocoExtDocumentDesc extends AbstractStructBase
     public function setCashBookInfo(?\Pggns\MidocoApi\Documents\StructType\CashBookInfo $cashBookInfo = null): self
     {
         // validation for constraint: choice(MidocoBillingDocument, MidocoInvoice, MidocoReceipt, CashBookInfo)
-        if ('' !== ($cashBookInfoChoiceErrorMessage = self::validateCashBookInfoForChoiceConstraintsFromSetCashBookInfo($cashBookInfo))) {
+        if ('' !== ($cashBookInfoChoiceErrorMessage = self::validateCashBookInfoForChoiceConstraintFromSetCashBookInfo($cashBookInfo))) {
             throw new InvalidArgumentException($cashBookInfoChoiceErrorMessage, __LINE__);
         }
         if (is_null($cashBookInfo) || (is_array($cashBookInfo) && empty($cashBookInfo))) {

@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for CreateAsyncDiffsResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class CreateAsyncDiffsResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class CreateAsyncDiffsResponse extends AbstractStructBase
      * - ref: DiffDocumentType
      * @var \Pggns\MidocoApi\Documents\StructType\DiffDocumentType[]
      */
-    protected array $DiffDocumentType = [];
+    protected ?array $DiffDocumentType = null;
     /**
      * Constructor method for CreateAsyncDiffsResponse
      * @uses CreateAsyncDiffsResponse::setDiffDocumentType()
      * @param \Pggns\MidocoApi\Documents\StructType\DiffDocumentType[] $diffDocumentType
      */
-    public function __construct(array $diffDocumentType = [])
+    public function __construct(?array $diffDocumentType = null)
     {
         $this
             ->setDiffDocumentType($diffDocumentType);
@@ -36,18 +37,22 @@ class CreateAsyncDiffsResponse extends AbstractStructBase
      * Get DiffDocumentType value
      * @return \Pggns\MidocoApi\Documents\StructType\DiffDocumentType[]
      */
-    public function getDiffDocumentType(): array
+    public function getDiffDocumentType(): ?array
     {
         return $this->DiffDocumentType;
     }
     /**
-     * This method is responsible for validating the values passed to the setDiffDocumentType method
+     * This method is responsible for validating the value(s) passed to the setDiffDocumentType method
      * This method is willingly generated in order to preserve the one-line inline validation within the setDiffDocumentType method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateDiffDocumentTypeForArrayConstraintsFromSetDiffDocumentType(array $values = []): string
+    public static function validateDiffDocumentTypeForArrayConstraintFromSetDiffDocumentType(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $createAsyncDiffsResponseDiffDocumentTypeItem) {
@@ -69,10 +74,10 @@ class CreateAsyncDiffsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DiffDocumentType[] $diffDocumentType
      * @return \Pggns\MidocoApi\Documents\StructType\CreateAsyncDiffsResponse
      */
-    public function setDiffDocumentType(array $diffDocumentType = []): self
+    public function setDiffDocumentType(?array $diffDocumentType = null): self
     {
         // validation for constraint: array
-        if ('' !== ($diffDocumentTypeArrayErrorMessage = self::validateDiffDocumentTypeForArrayConstraintsFromSetDiffDocumentType($diffDocumentType))) {
+        if ('' !== ($diffDocumentTypeArrayErrorMessage = self::validateDiffDocumentTypeForArrayConstraintFromSetDiffDocumentType($diffDocumentType))) {
             throw new InvalidArgumentException($diffDocumentTypeArrayErrorMessage, __LINE__);
         }
         $this->DiffDocumentType = $diffDocumentType;

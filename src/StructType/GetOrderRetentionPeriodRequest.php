@@ -11,32 +11,31 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetOrderRetentionPeriodRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetOrderRetentionPeriodRequest extends AbstractStructBase
 {
     /**
      * The MidocoOrderRetentionPeriod
      * Meta information extracted from the WSDL
-     * - maxOccurs: 1
-     * - minOccurs: 1
      * - ref: MidocoOrderRetentionPeriod
-     * @var \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod
+     * @var \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod|null
      */
-    protected \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $MidocoOrderRetentionPeriod;
+    protected ?\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $MidocoOrderRetentionPeriod = null;
     /**
      * Constructor method for GetOrderRetentionPeriodRequest
      * @uses GetOrderRetentionPeriodRequest::setMidocoOrderRetentionPeriod()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod
      */
-    public function __construct(\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod)
+    public function __construct(?\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod = null)
     {
         $this
             ->setMidocoOrderRetentionPeriod($midocoOrderRetentionPeriod);
     }
     /**
      * Get MidocoOrderRetentionPeriod value
-     * @return \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod
+     * @return \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod|null
      */
-    public function getMidocoOrderRetentionPeriod(): \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod
+    public function getMidocoOrderRetentionPeriod(): ?\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod
     {
         return $this->MidocoOrderRetentionPeriod;
     }
@@ -45,7 +44,7 @@ class GetOrderRetentionPeriodRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod
      * @return \Pggns\MidocoApi\Documents\StructType\GetOrderRetentionPeriodRequest
      */
-    public function setMidocoOrderRetentionPeriod(\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod): self
+    public function setMidocoOrderRetentionPeriod(?\Pggns\MidocoApi\Documents\StructType\MidocoOrderRetentionPeriod $midocoOrderRetentionPeriod = null): self
     {
         $this->MidocoOrderRetentionPeriod = $midocoOrderRetentionPeriod;
         

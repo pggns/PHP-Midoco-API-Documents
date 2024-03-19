@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetOrgUnitTreeResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetOrgUnitTreeResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetOrgUnitTreeResponse extends AbstractStructBase
      * - ref: MidocoOrgUnitElement
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoOrgUnitElementType[]
      */
-    protected array $MidocoOrgUnitElement = [];
+    protected ?array $MidocoOrgUnitElement = null;
     /**
      * Constructor method for GetOrgUnitTreeResponse
      * @uses GetOrgUnitTreeResponse::setMidocoOrgUnitElement()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoOrgUnitElementType[] $midocoOrgUnitElement
      */
-    public function __construct(array $midocoOrgUnitElement = [])
+    public function __construct(?array $midocoOrgUnitElement = null)
     {
         $this
             ->setMidocoOrgUnitElement($midocoOrgUnitElement);
@@ -36,18 +37,22 @@ class GetOrgUnitTreeResponse extends AbstractStructBase
      * Get MidocoOrgUnitElement value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoOrgUnitElementType[]
      */
-    public function getMidocoOrgUnitElement(): array
+    public function getMidocoOrgUnitElement(): ?array
     {
         return $this->MidocoOrgUnitElement;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoOrgUnitElement method
+     * This method is responsible for validating the value(s) passed to the setMidocoOrgUnitElement method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoOrgUnitElement method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoOrgUnitElementForArrayConstraintsFromSetMidocoOrgUnitElement(array $values = []): string
+    public static function validateMidocoOrgUnitElementForArrayConstraintFromSetMidocoOrgUnitElement(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getOrgUnitTreeResponseMidocoOrgUnitElementItem) {
@@ -69,10 +74,10 @@ class GetOrgUnitTreeResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoOrgUnitElementType[] $midocoOrgUnitElement
      * @return \Pggns\MidocoApi\Documents\StructType\GetOrgUnitTreeResponse
      */
-    public function setMidocoOrgUnitElement(array $midocoOrgUnitElement = []): self
+    public function setMidocoOrgUnitElement(?array $midocoOrgUnitElement = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoOrgUnitElementArrayErrorMessage = self::validateMidocoOrgUnitElementForArrayConstraintsFromSetMidocoOrgUnitElement($midocoOrgUnitElement))) {
+        if ('' !== ($midocoOrgUnitElementArrayErrorMessage = self::validateMidocoOrgUnitElementForArrayConstraintFromSetMidocoOrgUnitElement($midocoOrgUnitElement))) {
             throw new InvalidArgumentException($midocoOrgUnitElementArrayErrorMessage, __LINE__);
         }
         $this->MidocoOrgUnitElement = $midocoOrgUnitElement;

@@ -13,6 +13,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * - documentation: getAvailableAirlines--- returns a list of airlines
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAvailableAirlineDescriptionsResponse extends AbstractStructBase
 {
     /**
@@ -23,13 +24,13 @@ class GetAvailableAirlineDescriptionsResponse extends AbstractStructBase
      * - ref: MidocoAirlineDescription
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoAirlineDescriptionDTO[]
      */
-    protected array $MidocoAirlineDescription = [];
+    protected ?array $MidocoAirlineDescription = null;
     /**
      * Constructor method for GetAvailableAirlineDescriptionsResponse
      * @uses GetAvailableAirlineDescriptionsResponse::setMidocoAirlineDescription()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoAirlineDescriptionDTO[] $midocoAirlineDescription
      */
-    public function __construct(array $midocoAirlineDescription = [])
+    public function __construct(?array $midocoAirlineDescription = null)
     {
         $this
             ->setMidocoAirlineDescription($midocoAirlineDescription);
@@ -38,18 +39,22 @@ class GetAvailableAirlineDescriptionsResponse extends AbstractStructBase
      * Get MidocoAirlineDescription value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoAirlineDescriptionDTO[]
      */
-    public function getMidocoAirlineDescription(): array
+    public function getMidocoAirlineDescription(): ?array
     {
         return $this->MidocoAirlineDescription;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoAirlineDescription method
+     * This method is responsible for validating the value(s) passed to the setMidocoAirlineDescription method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoAirlineDescription method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoAirlineDescriptionForArrayConstraintsFromSetMidocoAirlineDescription(array $values = []): string
+    public static function validateMidocoAirlineDescriptionForArrayConstraintFromSetMidocoAirlineDescription(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAvailableAirlineDescriptionsResponseMidocoAirlineDescriptionItem) {
@@ -71,10 +76,10 @@ class GetAvailableAirlineDescriptionsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoAirlineDescriptionDTO[] $midocoAirlineDescription
      * @return \Pggns\MidocoApi\Documents\StructType\GetAvailableAirlineDescriptionsResponse
      */
-    public function setMidocoAirlineDescription(array $midocoAirlineDescription = []): self
+    public function setMidocoAirlineDescription(?array $midocoAirlineDescription = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoAirlineDescriptionArrayErrorMessage = self::validateMidocoAirlineDescriptionForArrayConstraintsFromSetMidocoAirlineDescription($midocoAirlineDescription))) {
+        if ('' !== ($midocoAirlineDescriptionArrayErrorMessage = self::validateMidocoAirlineDescriptionForArrayConstraintFromSetMidocoAirlineDescription($midocoAirlineDescription))) {
             throw new InvalidArgumentException($midocoAirlineDescriptionArrayErrorMessage, __LINE__);
         }
         $this->MidocoAirlineDescription = $midocoAirlineDescription;

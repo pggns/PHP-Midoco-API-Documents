@@ -13,6 +13,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * - documentation: getAvailableAirportDescriptions--- returns a list of airportdescriptions
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetAvailableAirportDescriptionsResponse extends AbstractStructBase
 {
     /**
@@ -23,13 +24,13 @@ class GetAvailableAirportDescriptionsResponse extends AbstractStructBase
      * - ref: MidocoAirportDescription
      * @var \Pggns\MidocoApi\Documents\StructType\AirportDescriptionDTO[]
      */
-    protected array $MidocoAirportDescription = [];
+    protected ?array $MidocoAirportDescription = null;
     /**
      * Constructor method for GetAvailableAirportDescriptionsResponse
      * @uses GetAvailableAirportDescriptionsResponse::setMidocoAirportDescription()
      * @param \Pggns\MidocoApi\Documents\StructType\AirportDescriptionDTO[] $midocoAirportDescription
      */
-    public function __construct(array $midocoAirportDescription = [])
+    public function __construct(?array $midocoAirportDescription = null)
     {
         $this
             ->setMidocoAirportDescription($midocoAirportDescription);
@@ -38,18 +39,22 @@ class GetAvailableAirportDescriptionsResponse extends AbstractStructBase
      * Get MidocoAirportDescription value
      * @return \Pggns\MidocoApi\Documents\StructType\AirportDescriptionDTO[]
      */
-    public function getMidocoAirportDescription(): array
+    public function getMidocoAirportDescription(): ?array
     {
         return $this->MidocoAirportDescription;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoAirportDescription method
+     * This method is responsible for validating the value(s) passed to the setMidocoAirportDescription method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoAirportDescription method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoAirportDescriptionForArrayConstraintsFromSetMidocoAirportDescription(array $values = []): string
+    public static function validateMidocoAirportDescriptionForArrayConstraintFromSetMidocoAirportDescription(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getAvailableAirportDescriptionsResponseMidocoAirportDescriptionItem) {
@@ -71,10 +76,10 @@ class GetAvailableAirportDescriptionsResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\AirportDescriptionDTO[] $midocoAirportDescription
      * @return \Pggns\MidocoApi\Documents\StructType\GetAvailableAirportDescriptionsResponse
      */
-    public function setMidocoAirportDescription(array $midocoAirportDescription = []): self
+    public function setMidocoAirportDescription(?array $midocoAirportDescription = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoAirportDescriptionArrayErrorMessage = self::validateMidocoAirportDescriptionForArrayConstraintsFromSetMidocoAirportDescription($midocoAirportDescription))) {
+        if ('' !== ($midocoAirportDescriptionArrayErrorMessage = self::validateMidocoAirportDescriptionForArrayConstraintFromSetMidocoAirportDescription($midocoAirportDescription))) {
             throw new InvalidArgumentException($midocoAirportDescriptionArrayErrorMessage, __LINE__);
         }
         $this->MidocoAirportDescription = $midocoAirportDescription;

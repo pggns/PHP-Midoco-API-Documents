@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for SearchUserResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class SearchUserResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class SearchUserResponse extends AbstractStructBase
      * - ref: MidocoUser
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoUser[]
      */
-    protected array $MidocoUser = [];
+    protected ?array $MidocoUser = null;
     /**
      * Constructor method for SearchUserResponse
      * @uses SearchUserResponse::setMidocoUser()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoUser[] $midocoUser
      */
-    public function __construct(array $midocoUser = [])
+    public function __construct(?array $midocoUser = null)
     {
         $this
             ->setMidocoUser($midocoUser);
@@ -36,18 +37,22 @@ class SearchUserResponse extends AbstractStructBase
      * Get MidocoUser value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoUser[]
      */
-    public function getMidocoUser(): array
+    public function getMidocoUser(): ?array
     {
         return $this->MidocoUser;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoUser method
+     * This method is responsible for validating the value(s) passed to the setMidocoUser method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoUser method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoUserForArrayConstraintsFromSetMidocoUser(array $values = []): string
+    public static function validateMidocoUserForArrayConstraintFromSetMidocoUser(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $searchUserResponseMidocoUserItem) {
@@ -69,10 +74,10 @@ class SearchUserResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoUser[] $midocoUser
      * @return \Pggns\MidocoApi\Documents\StructType\SearchUserResponse
      */
-    public function setMidocoUser(array $midocoUser = []): self
+    public function setMidocoUser(?array $midocoUser = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoUserArrayErrorMessage = self::validateMidocoUserForArrayConstraintsFromSetMidocoUser($midocoUser))) {
+        if ('' !== ($midocoUserArrayErrorMessage = self::validateMidocoUserForArrayConstraintFromSetMidocoUser($midocoUser))) {
             throw new InvalidArgumentException($midocoUserArrayErrorMessage, __LINE__);
         }
         $this->MidocoUser = $midocoUser;

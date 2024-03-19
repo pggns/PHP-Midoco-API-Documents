@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for RevokePrintsFromRemarkRequest StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class RevokePrintsFromRemarkRequest extends AbstractStructBase
 {
     /**
@@ -21,7 +22,7 @@ class RevokePrintsFromRemarkRequest extends AbstractStructBase
      * - ref: MidocoPrintDescription
      * @var \Pggns\MidocoApi\Documents\StructType\PrintDescriptionDTO[]
      */
-    protected array $MidocoPrintDescription = [];
+    protected ?array $MidocoPrintDescription = null;
     /**
      * The unitName
      * @var string|null
@@ -41,7 +42,7 @@ class RevokePrintsFromRemarkRequest extends AbstractStructBase
      * @param string $unitName
      * @param string $printDestId
      */
-    public function __construct(array $midocoPrintDescription = [], ?string $unitName = null, ?string $printDestId = null)
+    public function __construct(?array $midocoPrintDescription = null, ?string $unitName = null, ?string $printDestId = null)
     {
         $this
             ->setMidocoPrintDescription($midocoPrintDescription)
@@ -52,18 +53,22 @@ class RevokePrintsFromRemarkRequest extends AbstractStructBase
      * Get MidocoPrintDescription value
      * @return \Pggns\MidocoApi\Documents\StructType\PrintDescriptionDTO[]
      */
-    public function getMidocoPrintDescription(): array
+    public function getMidocoPrintDescription(): ?array
     {
         return $this->MidocoPrintDescription;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoPrintDescription method
+     * This method is responsible for validating the value(s) passed to the setMidocoPrintDescription method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoPrintDescription method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoPrintDescriptionForArrayConstraintsFromSetMidocoPrintDescription(array $values = []): string
+    public static function validateMidocoPrintDescriptionForArrayConstraintFromSetMidocoPrintDescription(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $revokePrintsFromRemarkRequestMidocoPrintDescriptionItem) {
@@ -85,10 +90,10 @@ class RevokePrintsFromRemarkRequest extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\PrintDescriptionDTO[] $midocoPrintDescription
      * @return \Pggns\MidocoApi\Documents\StructType\RevokePrintsFromRemarkRequest
      */
-    public function setMidocoPrintDescription(array $midocoPrintDescription = []): self
+    public function setMidocoPrintDescription(?array $midocoPrintDescription = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoPrintDescriptionArrayErrorMessage = self::validateMidocoPrintDescriptionForArrayConstraintsFromSetMidocoPrintDescription($midocoPrintDescription))) {
+        if ('' !== ($midocoPrintDescriptionArrayErrorMessage = self::validateMidocoPrintDescriptionForArrayConstraintFromSetMidocoPrintDescription($midocoPrintDescription))) {
             throw new InvalidArgumentException($midocoPrintDescriptionArrayErrorMessage, __LINE__);
         }
         $this->MidocoPrintDescription = $midocoPrintDescription;

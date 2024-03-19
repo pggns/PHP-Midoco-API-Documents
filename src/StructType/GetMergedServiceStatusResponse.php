@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for GetMergedServiceStatusResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class GetMergedServiceStatusResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class GetMergedServiceStatusResponse extends AbstractStructBase
      * - ref: MidocoServiceStatus
      * @var \Pggns\MidocoApi\Documents\StructType\ServiceStatusDTO[]
      */
-    protected array $MidocoServiceStatus = [];
+    protected ?array $MidocoServiceStatus = null;
     /**
      * Constructor method for GetMergedServiceStatusResponse
      * @uses GetMergedServiceStatusResponse::setMidocoServiceStatus()
      * @param \Pggns\MidocoApi\Documents\StructType\ServiceStatusDTO[] $midocoServiceStatus
      */
-    public function __construct(array $midocoServiceStatus = [])
+    public function __construct(?array $midocoServiceStatus = null)
     {
         $this
             ->setMidocoServiceStatus($midocoServiceStatus);
@@ -36,18 +37,22 @@ class GetMergedServiceStatusResponse extends AbstractStructBase
      * Get MidocoServiceStatus value
      * @return \Pggns\MidocoApi\Documents\StructType\ServiceStatusDTO[]
      */
-    public function getMidocoServiceStatus(): array
+    public function getMidocoServiceStatus(): ?array
     {
         return $this->MidocoServiceStatus;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoServiceStatus method
+     * This method is responsible for validating the value(s) passed to the setMidocoServiceStatus method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoServiceStatus method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoServiceStatusForArrayConstraintsFromSetMidocoServiceStatus(array $values = []): string
+    public static function validateMidocoServiceStatusForArrayConstraintFromSetMidocoServiceStatus(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $getMergedServiceStatusResponseMidocoServiceStatusItem) {
@@ -69,10 +74,10 @@ class GetMergedServiceStatusResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\ServiceStatusDTO[] $midocoServiceStatus
      * @return \Pggns\MidocoApi\Documents\StructType\GetMergedServiceStatusResponse
      */
-    public function setMidocoServiceStatus(array $midocoServiceStatus = []): self
+    public function setMidocoServiceStatus(?array $midocoServiceStatus = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoServiceStatusArrayErrorMessage = self::validateMidocoServiceStatusForArrayConstraintsFromSetMidocoServiceStatus($midocoServiceStatus))) {
+        if ('' !== ($midocoServiceStatusArrayErrorMessage = self::validateMidocoServiceStatusForArrayConstraintFromSetMidocoServiceStatus($midocoServiceStatus))) {
             throw new InvalidArgumentException($midocoServiceStatusArrayErrorMessage, __LINE__);
         }
         $this->MidocoServiceStatus = $midocoServiceStatus;

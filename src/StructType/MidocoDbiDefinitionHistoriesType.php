@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for MidocoDbiDefinitionHistoriesType StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class MidocoDbiDefinitionHistoriesType extends AbstractStructBase
 {
     /**
@@ -30,7 +31,7 @@ class MidocoDbiDefinitionHistoriesType extends AbstractStructBase
      * - ref: MidocoDbiDefinitionHistory
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionHistory[]
      */
-    protected array $MidocoDbiDefinitionHistory = [];
+    protected ?array $MidocoDbiDefinitionHistory = null;
     /**
      * Constructor method for MidocoDbiDefinitionHistoriesType
      * @uses MidocoDbiDefinitionHistoriesType::setMidocoDbiUpdate()
@@ -38,7 +39,7 @@ class MidocoDbiDefinitionHistoriesType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionHistory[] $midocoDbiDefinitionHistory
      */
-    public function __construct(\Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate, array $midocoDbiDefinitionHistory = [])
+    public function __construct(\Pggns\MidocoApi\Documents\StructType\DbiUpdateDTO $midocoDbiUpdate, ?array $midocoDbiDefinitionHistory = null)
     {
         $this
             ->setMidocoDbiUpdate($midocoDbiUpdate)
@@ -67,18 +68,22 @@ class MidocoDbiDefinitionHistoriesType extends AbstractStructBase
      * Get MidocoDbiDefinitionHistory value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionHistory[]
      */
-    public function getMidocoDbiDefinitionHistory(): array
+    public function getMidocoDbiDefinitionHistory(): ?array
     {
         return $this->MidocoDbiDefinitionHistory;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoDbiDefinitionHistory method
+     * This method is responsible for validating the value(s) passed to the setMidocoDbiDefinitionHistory method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoDbiDefinitionHistory method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoDbiDefinitionHistoryForArrayConstraintsFromSetMidocoDbiDefinitionHistory(array $values = []): string
+    public static function validateMidocoDbiDefinitionHistoryForArrayConstraintFromSetMidocoDbiDefinitionHistory(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $midocoDbiDefinitionHistoriesTypeMidocoDbiDefinitionHistoryItem) {
@@ -100,10 +105,10 @@ class MidocoDbiDefinitionHistoriesType extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionHistory[] $midocoDbiDefinitionHistory
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoDbiDefinitionHistoriesType
      */
-    public function setMidocoDbiDefinitionHistory(array $midocoDbiDefinitionHistory = []): self
+    public function setMidocoDbiDefinitionHistory(?array $midocoDbiDefinitionHistory = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoDbiDefinitionHistoryArrayErrorMessage = self::validateMidocoDbiDefinitionHistoryForArrayConstraintsFromSetMidocoDbiDefinitionHistory($midocoDbiDefinitionHistory))) {
+        if ('' !== ($midocoDbiDefinitionHistoryArrayErrorMessage = self::validateMidocoDbiDefinitionHistoryForArrayConstraintFromSetMidocoDbiDefinitionHistory($midocoDbiDefinitionHistory))) {
             throw new InvalidArgumentException($midocoDbiDefinitionHistoryArrayErrorMessage, __LINE__);
         }
         $this->MidocoDbiDefinitionHistory = $midocoDbiDefinitionHistory;

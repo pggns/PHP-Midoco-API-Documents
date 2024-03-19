@@ -11,6 +11,7 @@ use WsdlToPhp\PackageBase\AbstractStructBase;
  * This class stands for ListTourOperatorAddressesResponse StructType
  * @subpackage Structs
  */
+#[\AllowDynamicProperties]
 class ListTourOperatorAddressesResponse extends AbstractStructBase
 {
     /**
@@ -21,13 +22,13 @@ class ListTourOperatorAddressesResponse extends AbstractStructBase
      * - ref: MidocoTourOperatorAddress
      * @var \Pggns\MidocoApi\Documents\StructType\MidocoTourOperatorAddress[]
      */
-    protected array $MidocoTourOperatorAddress = [];
+    protected ?array $MidocoTourOperatorAddress = null;
     /**
      * Constructor method for ListTourOperatorAddressesResponse
      * @uses ListTourOperatorAddressesResponse::setMidocoTourOperatorAddress()
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoTourOperatorAddress[] $midocoTourOperatorAddress
      */
-    public function __construct(array $midocoTourOperatorAddress = [])
+    public function __construct(?array $midocoTourOperatorAddress = null)
     {
         $this
             ->setMidocoTourOperatorAddress($midocoTourOperatorAddress);
@@ -36,18 +37,22 @@ class ListTourOperatorAddressesResponse extends AbstractStructBase
      * Get MidocoTourOperatorAddress value
      * @return \Pggns\MidocoApi\Documents\StructType\MidocoTourOperatorAddress[]
      */
-    public function getMidocoTourOperatorAddress(): array
+    public function getMidocoTourOperatorAddress(): ?array
     {
         return $this->MidocoTourOperatorAddress;
     }
     /**
-     * This method is responsible for validating the values passed to the setMidocoTourOperatorAddress method
+     * This method is responsible for validating the value(s) passed to the setMidocoTourOperatorAddress method
      * This method is willingly generated in order to preserve the one-line inline validation within the setMidocoTourOperatorAddress method
+     * This has to validate that each item contained by the array match the itemType constraint
      * @param array $values
      * @return string A non-empty message if the values does not match the validation rules
      */
-    public static function validateMidocoTourOperatorAddressForArrayConstraintsFromSetMidocoTourOperatorAddress(array $values = []): string
+    public static function validateMidocoTourOperatorAddressForArrayConstraintFromSetMidocoTourOperatorAddress(?array $values = []): string
     {
+        if (!is_array($values)) {
+            return '';
+        }
         $message = '';
         $invalidValues = [];
         foreach ($values as $listTourOperatorAddressesResponseMidocoTourOperatorAddressItem) {
@@ -69,10 +74,10 @@ class ListTourOperatorAddressesResponse extends AbstractStructBase
      * @param \Pggns\MidocoApi\Documents\StructType\MidocoTourOperatorAddress[] $midocoTourOperatorAddress
      * @return \Pggns\MidocoApi\Documents\StructType\ListTourOperatorAddressesResponse
      */
-    public function setMidocoTourOperatorAddress(array $midocoTourOperatorAddress = []): self
+    public function setMidocoTourOperatorAddress(?array $midocoTourOperatorAddress = null): self
     {
         // validation for constraint: array
-        if ('' !== ($midocoTourOperatorAddressArrayErrorMessage = self::validateMidocoTourOperatorAddressForArrayConstraintsFromSetMidocoTourOperatorAddress($midocoTourOperatorAddress))) {
+        if ('' !== ($midocoTourOperatorAddressArrayErrorMessage = self::validateMidocoTourOperatorAddressForArrayConstraintFromSetMidocoTourOperatorAddress($midocoTourOperatorAddress))) {
             throw new InvalidArgumentException($midocoTourOperatorAddressArrayErrorMessage, __LINE__);
         }
         $this->MidocoTourOperatorAddress = $midocoTourOperatorAddress;
