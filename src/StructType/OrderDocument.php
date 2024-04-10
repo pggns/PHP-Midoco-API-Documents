@@ -34,9 +34,9 @@ class OrderDocument extends StandardDocument
      * Meta information extracted from the WSDL
      * - minOccurs: 0
      * - ref: address
-     * @var \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @var \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    protected ?\Pggns\MidocoApi\Documents\StructType\Address $address = null;
+    protected ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null;
     /**
      * The bookingId
      * @var string|null
@@ -70,13 +70,13 @@ class OrderDocument extends StandardDocument
      * @param int $orderDocumentId
      * @param int $orderId
      * @param int $orderNumber
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      * @param string $bookingId
      * @param string $startTravelDate
      * @param string $endTravelDate
      * @param string $supplierId
      */
-    public function __construct(?int $orderDocumentId = null, ?int $orderId = null, ?int $orderNumber = null, ?\Pggns\MidocoApi\Documents\StructType\Address $address = null, ?string $bookingId = null, ?string $startTravelDate = null, ?string $endTravelDate = null, ?string $supplierId = null)
+    public function __construct(?int $orderDocumentId = null, ?int $orderId = null, ?int $orderNumber = null, ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null, ?string $bookingId = null, ?string $startTravelDate = null, ?string $endTravelDate = null, ?string $supplierId = null)
     {
         $this
             ->setOrderDocumentId($orderDocumentId)
@@ -159,18 +159,18 @@ class OrderDocument extends StandardDocument
     }
     /**
      * Get address value
-     * @return \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @return \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address
+    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address_1
     {
         return $this->address;
     }
     /**
      * Set address value
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      * @return \Pggns\MidocoApi\Documents\StructType\OrderDocument
      */
-    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address $address = null): self
+    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null): self
     {
         $this->address = $address;
         

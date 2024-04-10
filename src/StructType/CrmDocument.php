@@ -29,9 +29,9 @@ class CrmDocument extends StandardDocument
      * Meta information extracted from the WSDL
      * - minOccurs: 0
      * - ref: address
-     * @var \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @var \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    protected ?\Pggns\MidocoApi\Documents\StructType\Address $address = null;
+    protected ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null;
     /**
      * Constructor method for CrmDocument
      * @uses CrmDocument::setCrmDocumentId()
@@ -39,9 +39,9 @@ class CrmDocument extends StandardDocument
      * @uses CrmDocument::setAddress()
      * @param int $crmDocumentId
      * @param int $customerId
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      */
-    public function __construct(?int $crmDocumentId = null, ?int $customerId = null, ?\Pggns\MidocoApi\Documents\StructType\Address $address = null)
+    public function __construct(?int $crmDocumentId = null, ?int $customerId = null, ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null)
     {
         $this
             ->setCrmDocumentId($crmDocumentId)
@@ -96,18 +96,18 @@ class CrmDocument extends StandardDocument
     }
     /**
      * Get address value
-     * @return \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @return \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address
+    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address_1
     {
         return $this->address;
     }
     /**
      * Set address value
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      * @return \Pggns\MidocoApi\Documents\StructType\CrmDocument
      */
-    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address $address = null): self
+    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null): self
     {
         $this->address = $address;
         

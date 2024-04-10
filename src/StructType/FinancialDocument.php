@@ -44,9 +44,9 @@ class FinancialDocument extends StandardDocument
      * Meta information extracted from the WSDL
      * - minOccurs: 0
      * - ref: address
-     * @var \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @var \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    protected ?\Pggns\MidocoApi\Documents\StructType\Address $address = null;
+    protected ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null;
     /**
      * The paymentInfo
      * Meta information extracted from the WSDL
@@ -81,12 +81,12 @@ class FinancialDocument extends StandardDocument
      * @param int $orderId
      * @param int $orderNumber
      * @param int $invoiceNumber
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      * @param \Pggns\MidocoApi\Documents\StructType\PaymentInfo $paymentInfo
      * @param float $totalPrice
      * @param string $currency
      */
-    public function __construct(?int $documentId = null, ?int $documentNumber = null, ?int $orderId = null, ?int $orderNumber = null, ?int $invoiceNumber = null, ?\Pggns\MidocoApi\Documents\StructType\Address $address = null, ?\Pggns\MidocoApi\Documents\StructType\PaymentInfo $paymentInfo = null, ?float $totalPrice = null, ?string $currency = null)
+    public function __construct(?int $documentId = null, ?int $documentNumber = null, ?int $orderId = null, ?int $orderNumber = null, ?int $invoiceNumber = null, ?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null, ?\Pggns\MidocoApi\Documents\StructType\PaymentInfo $paymentInfo = null, ?float $totalPrice = null, ?string $currency = null)
     {
         $this
             ->setDocumentId($documentId)
@@ -216,18 +216,18 @@ class FinancialDocument extends StandardDocument
     }
     /**
      * Get address value
-     * @return \Pggns\MidocoApi\Documents\StructType\Address|null
+     * @return \Pggns\MidocoApi\Documents\StructType\Address_1|null
      */
-    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address
+    public function getAddress(): ?\Pggns\MidocoApi\Documents\StructType\Address_1
     {
         return $this->address;
     }
     /**
      * Set address value
-     * @param \Pggns\MidocoApi\Documents\StructType\Address $address
+     * @param \Pggns\MidocoApi\Documents\StructType\Address_1 $address
      * @return \Pggns\MidocoApi\Documents\StructType\FinancialDocument
      */
-    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address $address = null): self
+    public function setAddress(?\Pggns\MidocoApi\Documents\StructType\Address_1 $address = null): self
     {
         $this->address = $address;
         
